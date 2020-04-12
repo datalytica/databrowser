@@ -7,19 +7,19 @@
 |----------------------------------------------------------------------------*/
 import {
   IDisposable
-} from '@phosphor/disposable';
+} from '@lumino/disposable';
 
 import {
   Platform
-} from '@phosphor/domutils';
+} from '@lumino/domutils';
 
 import {
   Drag
-} from '@phosphor/dragdrop';
+} from '@lumino/dragdrop';
 
 import {
-  DataGrid, DataModel, SelectionModel, TextRenderer, CellRenderer
-} from '@phosphor/datagrid';
+  DataGrid, MutableDataModel, DataModel, SelectionModel, TextRenderer, CellRenderer
+} from '@lumino/datagrid';
 
 import {
   TableDataModel, ColumnStats
@@ -616,6 +616,16 @@ class MouseHandler implements DataGrid.IMouseHandler {
   }
 
   /**
+   * Handle the mouse double click event for the data grid.
+   *
+   * @param grid - The data grid of interest.
+   *
+   * @param event - The mouse up event of interest.
+   */
+  onMouseDoubleClick(grid: DataGrid, event: MouseEvent): void {
+  }
+
+  /**
    * Handle the context menu event for the data grid.
    *
    * @param grid - The data grid of interest.
@@ -1143,7 +1153,7 @@ namespace Private {
   }
 
   export
-  function activateInput(model: DataModel, input: HTMLInputElement, value: any, region: DataModel.CellRegion, row: number, column: number,
+  function activateInput(model: MutableDataModel, input: HTMLInputElement, value: any, region: DataModel.CellRegion, row: number, column: number,
     x: number, y: number, width: number, height: number) {
     input.style.display = 'block';
     input.style.width = (width - 32) + 'px';
@@ -1155,13 +1165,13 @@ namespace Private {
     let dblclick = (event: Event) => { event.stopPropagation(); };
     let keyup = (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
-        model.cellEdited(region, row, column, input.value);
+        model.setData(region, row, column, input.value);
         onblur();
       } else if (event.key === 'Escape') {
-        model.cellEdited(region, row, column, '');
+        model.setData(region, row, column, '');
         onblur();
       }
-      model.cellEdited(region, row, column, input.value);
+      model.setData(region, row, column, input.value);
     };
 
     let onblur = () => {

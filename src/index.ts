@@ -9,7 +9,7 @@
 
 import {
   DockPanel, StackedPanel, Widget
-} from '@phosphor/widgets';
+} from '@lumino/widgets';
 
 import {
   TextIconRenderer as TextRenderer, HeaderRenderer
@@ -21,7 +21,7 @@ import {
 
 import {
   DataGrid, BasicSelectionModel, BasicKeyHandler, CellRenderer, RendererMap
-} from '@phosphor/datagrid';
+} from '@lumino/datagrid';
 
 import {
   MouseHandler as BasicMouseHandler
@@ -82,7 +82,7 @@ function main(): void {
 
   fetch('data.json').then( res => {
     res.json().then( result => {
-      model.setData(result.data, result.keys, result.types);
+      model.setRawData(result.data, result.keys, result.types);
     })
   });
 

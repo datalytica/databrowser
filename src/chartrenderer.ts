@@ -1,11 +1,11 @@
 
 import {
   CellRenderer, TextRenderer
-} from '@phosphor/datagrid';
+} from '@lumino/datagrid';
 
 import {
   GraphicsContext
-} from '@phosphor/datagrid';
+} from '@lumino/datagrid';
 
 
 /**

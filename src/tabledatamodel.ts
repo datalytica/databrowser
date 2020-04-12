@@ -1,7 +1,7 @@
 
 import {
-  DataModel,
-} from '@phosphor/datagrid';
+  DataModel, MutableDataModel,
+} from '@lumino/datagrid';
 
 import TypedFastBitSet = require('typedfastbitset');
 
@@ -31,7 +31,7 @@ interface ColumnStats {
 
 
 export
-class TableDataModel extends DataModel {
+class TableDataModel extends MutableDataModel {
 
   setHoveredBin(column: number, bin: number | 'null'): void {
     if (column !== this._hoveredBin.column) {
@@ -101,7 +101,7 @@ class TableDataModel extends DataModel {
     });
   }
 
-  setData(data: Array<Array<any>>, keys: Array<string>, types: Array<string>): void {
+  setRawData(data: Array<Array<any>>, keys: Array<string>, types: Array<string>): void {
     this._data = data;
     this._types = types;
 
@@ -304,7 +304,7 @@ class TableDataModel extends DataModel {
     return { 'type': this._types[column] };
   }
 
-  cellEdited(region: DataModel.CellRegion, row: number, column: number, value: string): void {
+  setData(region: DataModel.CellRegion, row: number, column: number, value: any): boolean {
     if (region === 'corner-header' || region === 'column-header') {
       let quickFilter = (region === 'corner-header') ? this._quickFilters[0] : this._quickFilters[1];
 
@@ -342,6 +342,7 @@ class TableDataModel extends DataModel {
         column: column, columnSpan: 1
       });
     }
+    return true;
   }
 
   private _data: Array<Array<any>> = [];
