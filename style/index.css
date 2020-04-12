@@ -1,0 +1,73 @@
+/*-----------------------------------------------------------------------------
+| Copyright (c) 2014-2018, PhosphorJS Contributors
+|
+| Distributed under the terms of the BSD 3-Clause License.
+|
+| The full license is in the file LICENSE, distributed with this software.
+|----------------------------------------------------------------------------*/
+
+@import '~@phosphor/default-theme/style/index.css';
+@import url("https://fonts.googleapis.com/css?family=Material+Icons|Roboto:100,300,400,500,600");
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+#dock {
+  flex: 1 1 auto;
+  padding: 4px;
+}
+
+
+.content-wrapper {
+  padding: 8px;
+  border: 1px solid #C0C0C0;
+  border-top: none;
+  background: white;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+.p-DataGrid-tooltip {
+  position: absolute;
+  background: white;
+  padding: 12px;
+  font: 400 12px Roboto, "Helvetica Neue", sans-serif;
+  border: 1px solid #DDDDDD;
+  pointer-events: none;
+  z-index: 1000;
+  grid-template-columns: auto auto;
+  grid-gap: 4px;
+  color: #737373;
+  box-shadow: 1px 2px 1px 0 rgba(0,0,0,.22);
+}
+
+
+.p-DataGrid-tooltip .data {
+  color: #2B2B2B;
+  font-weight: bolder;
+  white-space: nowrap;
+  text-align: left;
+}
+
+
+.p-DataGrid-input {
+  user-select: all;
+  padding: 0px 4px 0px 4px;
+  text-align: left;
+  border: 1px solid #DDDDDD;
+  outline: none;
+  font: 400 12px Roboto, "Helvetica Neue", sans-serif;
+}
